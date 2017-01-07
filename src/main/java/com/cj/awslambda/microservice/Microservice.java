@@ -1,4 +1,4 @@
-package com.davidron.awslambda.microservice;
+package com.cj.awslambda.microservice;
 
 import java.util.HashMap;
 import java.util.Map;
