@@ -1,8 +1,35 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.davidron</groupId>
+  <groupId>com.cj</groupId>
   <artifactId>aws-microservice</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1-SNAPSHOT</version>
   <name>AWS Microservice Library</name>
   <description>Java Library For Transforming A Single AWS Lambda Function Into A Full Blown Microservice API</description>
+  <build>
+
+    <extensions>
+      <extension>
+	<groupId>org.apache.maven.wagon</groupId>
+	<artifactId>wagon-webdav-jackrabbit</artifactId>
+	<version>2.2</version>
+      </extension>
+    </extensions>
+
+  </build>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <uniqueVersion>false</uniqueVersion>
+      <name>Nexus Repository</name>
+      <url>dav:http://deployment:deployment123@build105.wl.cj.com:8081/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>releases</id>
+      <uniqueVersion>false</uniqueVersion>
+      <name>Nexus Repository</name>
+      <url>dav:http://deployment:deployment123@build105.wl.cj.com:8081/nexus/content/repositories/releases</url>
+    </repository>
+  </distributionManagement>
+  
 </project>
