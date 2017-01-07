@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import com.davidron.awslambda.microservice.Microservice.Request.RequestMethod;
+import com.davidron.awslambda.microservice.Request.RequestMethod;
 
 public class Response{
   final Integer responseCode;

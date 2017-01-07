@@ -2,9 +2,8 @@ package com.davidron.awslambda.microservice;
 
 import java.util.Optional;
 
-import com.davidron.awslambda.microservice.Microservice.Request;
-import com.davidron.awslambda.microservice.Microservice.Request.RequestMethod;
 import com.davidron.awslambda.microservice.Microservice.RequestAndResponse;
+import com.davidron.awslambda.microservice.Request.RequestMethod;
 
 
 public class RequestMatcher {
