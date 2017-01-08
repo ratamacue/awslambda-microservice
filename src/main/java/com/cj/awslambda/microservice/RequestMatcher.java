@@ -13,7 +13,7 @@ public class RequestMatcher {
   final RequestAndResponse request;
   
   public RequestMatcher(){
-    this(Optional.empty(), Optional.empty(), (x,y)->Response.METHOD_NOT_SUPPORTED());
+    this(Optional.empty(), Optional.empty(), (x)->Response.METHOD_NOT_SUPPORTED());
   }
   
   public RequestMatcher matchingPath(String path){
