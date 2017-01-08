@@ -15,9 +15,10 @@ public class Request{
   public final Context context;
 
   public Request(Map<String, Object> rawRequestFromAWS, Context contextFromAws){
-          method =  RequestMethod.valueOf(rawRequestFromAWS.get("httpMethod").toString());
+          //method =  Optional.ofNullable(RequestMethod.valueOf(rawRequestFromAWS.get("httpMethod")).toString()));
+          method = Optional.ofNullable(rawRequestFromAWS.get("httpMethod")).map(Object::toString).map(RequestMethod::valueOf).orElse(RequestMethod.UNDEFINED);
           queryString = Optional.ofNullable(rawRequestFromAWS.get("queryStringParameters")).map(q->(Map<String, String>)q).orElse(new HashMap<>());
-          fullPath = rawRequestFromAWS.get("path").toString();
+          fullPath = Optional.ofNullable(rawRequestFromAWS.get("path")).map(Object::toString).orElse("/");
           proxyPath = Optional.ofNullable(rawRequestFromAWS.get("pathParameters")).map(x->(Map<String, String>)x).flatMap(m->Optional.ofNullable(m.get("proxy"))).orElse("/"); 
           body =  Optional.ofNullable(rawRequestFromAWS.get("body")).map(Object::toString);
           context=contextFromAws;
@@ -62,7 +63,7 @@ public class Request{
   }
   
   public enum RequestMethod {
-    GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE;
+    GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE, UNDEFINED;
   }
   
 }
