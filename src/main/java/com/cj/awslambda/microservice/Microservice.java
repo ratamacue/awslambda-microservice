@@ -1,8 +1,6 @@
 package com.cj.awslambda.microservice;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.BiFunction;
 
 import com.amazonaws.services.lambda.runtime.Context;
@@ -21,9 +19,5 @@ public class Microservice {
       }
     };  
   }
-  
-
-  
-  public static interface RequestAndResponse extends BiFunction<Request, Context, Response>{};
  
 }

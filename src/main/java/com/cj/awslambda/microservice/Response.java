@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 import com.cj.awslambda.microservice.Request.RequestMethod;
 
 public class Response{
-  final Integer responseCode;
-  final Optional<String> body;
-  final Headers headers;
+  final public Integer responseCode;
+  final public Optional<String> body;
+  final public Headers headers;
 
   public Response(Integer code, Headers... headers){
     this.responseCode=code;
@@ -40,6 +40,7 @@ public class Response{
   public static Response METHOD_NOT_SUPPORTED(RequestMethod... allowedMethods){
     return new Response(405, header("Allow", Arrays.asList(allowedMethods).stream().map(RequestMethod::toString).collect(Collectors.joining(","))));
   };
+  public static Response AUTHENTICATION_FAILED(){return new Response(401);}
   public static Response NOT_IMPLEMENTED(){return new Response(501);}
 
   public static Headers header(String key, String value){
