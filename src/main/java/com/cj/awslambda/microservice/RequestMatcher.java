@@ -29,7 +29,6 @@ public class RequestMatcher {
   boolean matches(Request request) {
     boolean pathMatches = path.map(x->x.equals(request.proxyPath)).orElse(Boolean.TRUE);
     boolean methodMatches = method.map(x->x.equals(request.method)).orElse(Boolean.TRUE);
-    System.out.println("pathMatches "+pathMatches+ "  And, methodMatches: "+methodMatches);
     return pathMatches && methodMatches;
   }
   

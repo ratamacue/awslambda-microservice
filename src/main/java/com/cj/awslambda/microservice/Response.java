@@ -36,7 +36,7 @@ public class Response{
         
   }
 
-  public static Response OK(String body, Headers... headers){ System.out.println("Return 200 Response...");  return new Response(200, body, headers); }
+  public static Response OK(String body, Headers... headers){return new Response(200, body, headers); }
   public static Response METHOD_NOT_SUPPORTED(RequestMethod... allowedMethods){
     return new Response(405, header("Allow", Arrays.asList(allowedMethods).stream().map(RequestMethod::toString).collect(Collectors.joining(","))));
   };
