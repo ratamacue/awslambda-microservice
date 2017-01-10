@@ -5,16 +5,9 @@ import java.util.Optional;
 
 public class AWSEnvironment {
   private final Map<String, String> environment;
-  public AWSEnvironment(){
-    environment= System.getenv();
-  }
-  
-  /**
-   * Useful for testing.
-   * @param fakeEnvironment
-   */
-  public AWSEnvironment(Map<String, String> fakeEnvironment){
-    this.environment=fakeEnvironment;
+
+  public AWSEnvironment(Map<String, String> environment){
+    this.environment=environment;
   }
   
   public Integer getMaximumAllocatedMemory(){return Optional.ofNullable(environment.get("AWS_LAMBDA_FUNCTION_MEMORY_SIZE")).map(Integer::parseInt).orElse(0);}

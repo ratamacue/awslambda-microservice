@@ -1,13 +1,15 @@
 package com.cj.awslambda.microservices;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
 
+import com.cj.awslambda.microservice.AWSEnvironment;
 import com.cj.awslambda.microservice.FakeContext;
 import com.cj.awslambda.microservice.Microservice;
 import com.cj.awslambda.microservice.RequestAndResponse;
@@ -16,6 +18,7 @@ import com.cj.awslambda.microservice.Response;
 
 public class MicroserviceTest {
   Boolean matched;  //Not thread safe, but also not implicitly final.  drOn must be drunk.
+  AWSEnvironment fakeEnvironment = new AWSEnvironment(new HashMap<>());
   
   @Test
   public void testMatchingPath(){
@@ -26,7 +29,7 @@ public class MicroserviceTest {
     RequestMatcher matcher = new RequestMatcher().matchingPath("test").respondWith(service);
     
     //WHEN
-    Map<String, Object> response = Microservice.microservice(request, new FakeContext(), matcher);
+    Map<String, Object> response = Microservice.microservice(request, new FakeContext(), fakeEnvironment, matcher);
     
     assertTrue(matched);
     assertEquals(response.get("body"), "valid response");
@@ -41,7 +44,7 @@ public class MicroserviceTest {
     RequestMatcher matcher = new RequestMatcher().matchingPath("test").respondWith(service);
     
     //WHEN
-    Map<String, Object> response = Microservice.microservice(request, new FakeContext(), matcher);
+    Map<String, Object> response = Microservice.microservice(request, new FakeContext(), fakeEnvironment, matcher);
     
     assertFalse(matched);
   }
@@ -59,7 +62,7 @@ public class MicroserviceTest {
     RequestMatcher matcher = new RequestMatcher().matchingPath("test").respondWith(service);
     
     //WHEN
-    Map<String, Object> response = Microservice.microservice(request, new FakeContext(), matcher);
+    Map<String, Object> response = Microservice.microservice(request, new FakeContext(), fakeEnvironment, matcher);
     
     assertTrue(matched);
   }
