@@ -36,6 +36,7 @@ public class Response{
         
   }
 
+  //RESPONSES
   public static Response OK(String body, Headers... headers){return new Response(200, body, headers); }
   public static Response METHOD_NOT_SUPPORTED(RequestMethod... allowedMethods){
     return new Response(405, header("Allow", Arrays.asList(allowedMethods).stream().map(RequestMethod::toString).collect(Collectors.joining(","))));
@@ -43,6 +44,10 @@ public class Response{
   public static Response AUTHENTICATION_FAILED(){return new Response(401);}
   public static Response NOT_IMPLEMENTED(){return new Response(501);}
 
+  //HEADERS
+  public static Headers HEADER_ALLOW_CROSS_DOMAIN() {return header("Access-Control-Allow-Origin", "*");}
+  public static Headers HEADER_EMPTY_HEADER(){return new Headers();}
+  
   public static Headers header(String key, String value){
     Headers header = new Headers();
     header.put(key, value);
@@ -58,6 +63,8 @@ public class Response{
 
   @SuppressWarnings("serial")
   public static class Headers extends TreeMap<String, String>{}
+  
+  
 
 }
 
