@@ -13,4 +13,16 @@ public interface AWSLambdaMicroservice extends RequestHandler<Map<String, Object
     return lambda(new Request(request, context, new AWSEnvironment(System.getenv()))).toLambdaResponse();
   }
   
+  default public Response route(Request request, RequestMatcher...matchers){
+    for(RequestMatcher matcher: matchers){
+      if(matcher.matches(request)){
+        return matcher.request.apply(request);
+      }
+    }
+    return Response.NOT_IMPLEMENTED();
+  }
+  
+  default public RequestMatcher macher(){
+    return new RequestMatcher();
+  }
 }

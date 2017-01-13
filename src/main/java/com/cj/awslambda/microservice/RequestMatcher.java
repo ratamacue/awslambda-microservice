@@ -11,7 +11,7 @@ public class RequestMatcher {
   final RequestAndResponse request;
   
   public RequestMatcher(){
-    this(Optional.empty(), Optional.empty(), (x)->Response.METHOD_NOT_SUPPORTED());
+    this(Optional.empty(), Optional.empty(), (x)->Response.NOT_IMPLEMENTED());
   }
   
   public RequestMatcher matchingPath(String path){
@@ -24,6 +24,10 @@ public class RequestMatcher {
   
   public RequestMatcher respondWith(RequestAndResponse requestAndResponse){
     return new RequestMatcher(path, method, requestAndResponse);
+  }
+  
+  public RequestMatcher respondWith(Response response){
+    return new RequestMatcher(path, method, (request)->response);
   }
   
   boolean matches(Request request) {

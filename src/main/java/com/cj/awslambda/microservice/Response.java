@@ -1,6 +1,7 @@
 package com.cj.awslambda.microservice;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
@@ -38,8 +39,9 @@ public class Response{
 
   //RESPONSES
   public static Response OK(String body, Headers... headers){return new Response(200, body, headers); }
-  public static Response METHOD_NOT_SUPPORTED(RequestMethod... allowedMethods){
-    return new Response(405, header("Allow", Arrays.asList(allowedMethods).stream().map(RequestMethod::toString).collect(Collectors.joining(","))));
+  public static Response METHOD_NOT_SUPPORTED(List<RequestMethod> allowedMethods, Headers... additionalHeaders){
+    Headers additionalHeadersCollected = merge(additionalHeaders);
+    return new Response(405, merge(additionalHeadersCollected, header("Allow", allowedMethods.stream().map(RequestMethod::toString).collect(Collectors.joining(",")))));
   };
   public static Response AUTHENTICATION_FAILED(){return new Response(401);}
   public static Response NOT_IMPLEMENTED(){return new Response(501);}
@@ -54,7 +56,7 @@ public class Response{
     return header;
   }
 
-  private static Headers merge(Headers[] headers){
+  private static Headers merge(Headers... headers){
     Headers newHeaders = new Headers();
     for(Headers next:headers){newHeaders.putAll(next);}
     return newHeaders;

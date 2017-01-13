@@ -13,7 +13,7 @@ public class Microservice {
         return requestMatcher.request.apply(request).toLambdaResponse();
       }
     }
-    return Response.METHOD_NOT_SUPPORTED().toLambdaResponse();
+    return Response.NOT_IMPLEMENTED().toLambdaResponse();
   }
  
 }
