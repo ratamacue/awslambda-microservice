@@ -1,5 +1,6 @@
 package com.cj.awslambda.microservice;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -39,6 +40,7 @@ public class Response{
   //RESPONSES
   public static Response OK(String body, Headers... headers){return new Response(200, body, headers); }
   public static Response METHOD_NOT_SUPPORTED(List<RequestMethod> allowedMethods, Headers... additionalHeaders){
+    if(allowedMethods == null) allowedMethods = new ArrayList<>();
     Headers additionalHeadersCollected = merge(additionalHeaders);
     return new Response(405, merge(additionalHeadersCollected, header("Allow", allowedMethods.stream().map(RequestMethod::toString).collect(Collectors.joining(",")))));
   };
