@@ -55,8 +55,8 @@ public class Request{
       return new Builder(new Request(request.method, request.queryString, request.fullPath, proxyPath, request.body, request.context, request.awsEnvironment));
     }
     
-    public Builder withBody(Optional<String> body){
-      return new Builder(new Request(request.method, request.queryString, request.fullPath, request.proxyPath, body, request.context, request.awsEnvironment));
+    public Builder withBody(String body){
+      return new Builder(new Request(request.method, request.queryString, request.fullPath, request.proxyPath, Optional.ofNullable(body), request.context, request.awsEnvironment));
     }
     
     public Request build(){
