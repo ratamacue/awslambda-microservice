@@ -1,6 +1,5 @@
 package com.cj.awslambda.microservice;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -58,6 +57,7 @@ public class Response{
 
   private static Headers merge(Headers... headers){
     Headers newHeaders = new Headers();
+    if(headers == null) return newHeaders;
     for(Headers next:headers){newHeaders.putAll(next);}
     return newHeaders;
   }
