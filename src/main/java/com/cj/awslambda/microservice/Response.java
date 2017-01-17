@@ -39,6 +39,8 @@ public class Response{
 
   //RESPONSES
   public static Response OK(String body, Headers... headers){return new Response(200, body, headers); }
+  public static Response CREATED(String body, Headers... headers){return new Response(200, body, headers);}
+  public static Response BAD_REQUEST(String body, Headers... headers){return new Response(400, body, headers);}
   public static Response METHOD_NOT_SUPPORTED(List<RequestMethod> allowedMethods, Headers... additionalHeaders){
     if(allowedMethods == null) allowedMethods = new ArrayList<>();
     Headers additionalHeadersCollected = merge(additionalHeaders);
