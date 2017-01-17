@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.cj</groupId>
   <artifactId>aws-microservice</artifactId>
-  <version>0.3-SNAPSHOT</version>
+  <version>0.4-SNAPSHOT</version>
   <name>AWS Microservice Library</name>
   <description>Java Library For Transforming A Single AWS Lambda Function Into A Full Blown Microservice API</description>
 

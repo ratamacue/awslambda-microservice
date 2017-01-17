@@ -22,7 +22,7 @@ public interface AWSLambdaMicroservice extends RequestHandler<Map<String, Object
     return Response.NOT_IMPLEMENTED();
   }
   
-  default public RequestMatcher macher(){
+  default public RequestMatcher matcher(){
     return new RequestMatcher();
   }
 }
