@@ -10,7 +10,12 @@ public interface AWSLambdaMicroservice extends RequestHandler<Map<String, Object
   
   @Override
   default public Map<String, Object> handleRequest(Map<String, Object> request, Context context) {
-    return lambda(new Request(request, context, new AWSEnvironment(System.getenv()))).toLambdaResponse();
+    try{
+      return lambda(new Request(request, context, new AWSEnvironment(System.getenv()))).toLambdaResponse();
+    }catch(Exception e){
+      e.printStackTrace();
+      return Response.INTERNAL_SERVER_ERROR().toLambdaResponse();
+    }
   }
   
   default public Response route(Request request, RequestMatcher...matchers){

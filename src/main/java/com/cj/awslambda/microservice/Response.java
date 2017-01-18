@@ -47,6 +47,7 @@ public class Response{
     return new Response(405, merge(additionalHeadersCollected, header("Allow", allowedMethods.stream().map(RequestMethod::toString).collect(Collectors.joining(",")))));
   };
   public static Response AUTHENTICATION_FAILED(){return new Response(401);}
+  public static Response INTERNAL_SERVER_ERROR(){return new Response(500);}
   public static Response NOT_IMPLEMENTED(){return new Response(501);}
 
   //HEADERS
