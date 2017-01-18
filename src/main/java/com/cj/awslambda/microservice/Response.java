@@ -51,6 +51,7 @@ public class Response{
 
   //HEADERS
   public static Headers HEADER_ALLOW_CROSS_DOMAIN() {return header("Access-Control-Allow-Origin", "*");}
+  public static Headers HEADER_CACHE_CONTROL_MAX_AGE(Integer ageInSeconds) {return header("Cache-Control", "max-age="+ageInSeconds);}
   public static Headers HEADER_EMPTY_HEADER(){return new Headers();}
   
   public static Headers header(String key, String value){
